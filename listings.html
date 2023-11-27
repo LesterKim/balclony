@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jersey City, NJ Asset Registry</title>
+    <!-- Include CSS -->
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <!-- Include Tailwind CSS -->
+    <link href="/static/css/tailwind.css" rel="stylesheet">
+    <!-- Include HTMX -->
+    <script src="/static/js/htmx.min.js" defer></script>
+</head>
+<body class="bg-gray-100">
+
+    <header class="text-center py-6 bg-white shadow">
+        <h1 class="text-2xl font-bold">Jersey City, NJ Asset Registry</h1>
+    </header>
+
+    <main class="container mx-auto mt-8">
+        <!-- Search form -->
+        <div class="mb-4">
+            <input type="text" placeholder="Search an address" class="border p-2" hx-get="/search" hx-trigger="keyup delayed:500ms" hx-target="#listing-container" hx-indicator="#loading-indicator">
+        </div>
+
+        <!-- Listings Container -->
+        <div id="listing-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Placeholder content -->
+            <div hx-include="#search-form">Please search for a property...</div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" style="display:none;">
+            <img src="/static/images/loading.gif" alt="Loading...">
+        </div>
+
+        <div class="grid-container" id="estates-list">
+            {{ range .Estates }}
+            <div class="card">
+                <a href="/listing/{{ .Slug }}"> <!-- Make the whole card a link -->
+                    {{ if len .Photos }}
+                    <!-- Display the first photo -->
+                    <img src="{{ index .Photos 0 }}" alt="Photo of {{ .Address }}">
+                    {{ else }}
+                    <!-- Display a default image if Photos is empty -->
+                    <img src="/static/images/default-real-estate-image.png" alt="Default estate image">
+                    {{ end }}
+                    <div class="card-item">
+                        <div class="estate-item">
+                            <h2 class="card-title">{{ .Address }}</h2>
+                            <p>Owner: {{ .Owner }}</p>
+                            <p>Type: {{ .EstateType }}</p>
+                            <!-- Display the first photo if available -->
+                            <p>Block: {{ .Block }}, Lot: {{ .Lot }}</p>
+                            <!-- ... include other fields as needed ... -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </main>
+
+</body>
+</html>
