@@ -61,6 +61,8 @@
                     <th>Book</th>
                     <th>Page</th>
                     <th>Price</th>
+                    <th>NU#</th>
+                    <th>Ratio</th>
                     <!-- Add other sale information headers here -->
                 </tr>
                 {{ range .SaleInformation }}
@@ -69,6 +71,8 @@
                     <td>{{ .Book }}</td>
                     <td>{{ .Page }}</td>
                     <td>${{ .Price }}</td>
+                    <td>${{ .NU }}</td>
+                    <td>${{ .Ratio }}</td>
                     <!-- Add other sale information data here -->
                 </tr>
                 {{ end }}
@@ -79,6 +83,36 @@
         <div class="tax-list-history">
             <h2>Tax List History</h2>
             <!-- Similar structure to the Sale Information table -->
+            <table>
+                <tr>
+                    <th>Year</th>
+                    <th>Property Location</th>
+                    <th>Land Assessment</th>
+                    <th>Implemented</th>
+                    <th>Total Assessment</th>
+                    <th>Exemption</th>
+                    <th>Assessed</th>
+                    <th>Property Class</th>
+                    <th>Additional Lots</th>
+                    <th>Deductions</th>
+                    <!-- Add other sale information headers here -->
+                </tr>
+                {{ range .History}}
+                <tr>
+                    <td>{{ .Year }}</td>
+                    <td>{{ .Street }}</td>
+                    <td>{{ .LandAssmnt }}</td>
+                    <td>{{ .Imp }}</td>
+                    <td>${{ .TotalAssmnt }}</td>
+                    <td>${{ .Exempt }}</td>
+                    <td>${{ .Assessed }}</td>
+                    <td>${{ .PropClass }}</td>
+                    <td>${{ .AdditionalLots }}</td>
+                    <td>${{ .Deductions }}</td>
+                    <!-- Add other sale information data here -->
+                </tr>
+                {{ end }}
+            </table>
         </div>
     </div>
 </main>
