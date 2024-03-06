@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ .Address }}</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="/static/css/output.css" rel="stylesheet">
     <!-- Google Maps JavaScript API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1oKrVQdJhniqN0-v5fpwOPF5aAplAC6A&callback=initMap&libraries=maps,marker&v=beta">
     </script>
@@ -30,9 +31,9 @@
         }
     </script>
 </head>
-<body>
+<body class="bg-gray-100">
 
-<main class="listing-details">
+<main class="container mx-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
     <!-- The div element for your map -->
     <div id="map" style="height: 400px; width: 100%;"></div>
 

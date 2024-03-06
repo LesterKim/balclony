@@ -33,6 +33,7 @@ func AssetRegistryHandler(w http.ResponseWriter, r *http.Request) {
 	// Call the FetchData function to get the listings
 	estates, err := FetchData(apiEndpoint)
 	if err != nil {
+		fmt.Println("FetchData error: ", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
